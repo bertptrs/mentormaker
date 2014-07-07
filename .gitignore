@@ -1,3 +1,9 @@
+# Dependency file
+Makefile.depend
+
+# Data dir
+data
+
 # Compiled Object files
 *.slo
 *.lo
@@ -19,3 +25,8 @@
 *.exe
 *.out
 *.app
+generator
+mentormaker
+
+# Swap files
+*.swp
