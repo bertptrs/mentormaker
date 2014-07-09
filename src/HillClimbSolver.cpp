@@ -50,14 +50,14 @@ void HillClimbSolver::randomSwap(const Solution* solution)
 
 	const Sjaars * member = group1->randomMember();
 
-	group1->remove(member1);
-	group2->insert(member1);
+	group1->remove(member);
+	group2->insert(member);
 
 	if (solution->score() < score)
 	{
 		// This is worse, change it back.
-		group1->insert(member1);
-		group2->remove(member1);
+		group1->insert(member);
+		group2->remove(member);
 	}
 }
 
