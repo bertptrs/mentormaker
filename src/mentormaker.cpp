@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Solver.h"
+#include "HillClimbSolver.h"
 
 using namespace std;
 
@@ -10,8 +11,15 @@ int main(int argc, char** argv) {
 
 		return 1;
 	}
-	Solver s;
-	s.readInput(argv[1]);
+	srand (time(NULL));
+
+	Solver* solver = new HillClimbSolver();
+	solver->readInput(argv[1]);
+	solver->solve();
+
+	cout << "Best result: " << solver->bestScore() << endl;
+
+	delete solver;
 
 	return 0;
 }

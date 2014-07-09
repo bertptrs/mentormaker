@@ -1,5 +1,5 @@
 CXX=g++
-CXXFLAGS=-Wall -Wextra -pedantic -O3 -std=c++11 -ffast-math -march=native
+CXXFLAGS=-Wall -Wextra -pedantic -O2 -std=c++11 -g
 LDFLAGS=
 RM=rm -rf
 MKDIR=mkdir -p
@@ -16,7 +16,10 @@ RANDOMINPUT=data/random.csv
 
 _OBJS=mentormaker.o\
 	  Sjaars.o\
-	  Solver.o
+	  Solver.o\
+	  Group.o\
+	  Solution.o\
+	  HillClimbSolver.o
 
 OBJS=$(patsubst %, $(OBJDIR)/%, $(_OBJS))
 

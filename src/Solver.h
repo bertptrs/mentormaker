@@ -1,19 +1,24 @@
 #ifndef SOLVER_H
 #define SOLVER_H
 #include "Sjaars.h"
+#include "Solution.h"
 #include <map>
+#include <vector>
 
 using namespace std;
 
 class Solver {
-	private:
+	protected:
 		map<int, Sjaars*> sjaarzen;
+		vector<Solution*> solutions;
 
 	public:
 		Solver();
-		~Solver();
+		virtual ~Solver();
 
 		bool readInput(const char* input_filename);
+		int bestScore() const;
+		virtual void solve() = 0;
 };
 
 #endif

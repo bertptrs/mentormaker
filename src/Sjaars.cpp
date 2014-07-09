@@ -35,4 +35,17 @@ bool Sjaars::laadVoorkeuren(const map<int, Sjaars*>& sjaarzen) {
 	return true;
 
 }
-	
+
+const set<const Sjaars *>& Sjaars::getVoorkeuren() const {
+	return voorkeuren;
+}
+
+int Sjaars::getLidNo() const
+{
+	return lidNo;
+}
+
+geslacht_t Sjaars::getGeslacht() const
+{
+	return geslacht;
+}

@@ -15,7 +15,7 @@ class Sjaars {
 		int lidNo;
 		geslacht_t geslacht;
 		int voorkeurIds[3];
-		set<Sjaars const *> voorkeuren;
+		set<const Sjaars*> voorkeuren;
 		bool geplaatst;
 
 	public:
@@ -24,6 +24,10 @@ class Sjaars {
 		bool isGeplaatst() const;
 		void setGeplaatst(bool geplaatst = true);
 		bool laadVoorkeuren(const map<int, Sjaars*>& sjaarzen);
+		int getLidNo() const;
+		geslacht_t getGeslacht() const;
+
+		const set<const Sjaars *>& getVoorkeuren() const;
 
 };
 

@@ -2,6 +2,8 @@
 #include <fstream>
 #include <iostream>
 #include <cassert>
+#include <limits>
+#include <iostream>
 
 Solver::Solver() {
 }
@@ -9,6 +11,10 @@ Solver::Solver() {
 Solver::~Solver() {
 	for (auto sjaarzenPaar: sjaarzen) {
 		delete sjaarzenPaar.second;
+	}
+	for (auto solution : solutions) 
+	{
+		delete solution;
 	}
 }
 
@@ -42,4 +48,23 @@ bool Solver::readInput(const char* input_filename) {
 	input.close();
 
 	return true;
+}
+
+int Solver::bestScore() const
+{
+	int best = numeric_limits<int>::min();
+	Solution * bestSolution = NULL;
+	for (auto solution : solutions) {
+		int score = solution->score();
+		if (score > best)
+		{
+			best = score;
+			bestSolution = solution;
+		}
+	}
+	if (bestSolution != NULL)
+	{
+		bestSolution->print();
+	}
+	return best;
 }
