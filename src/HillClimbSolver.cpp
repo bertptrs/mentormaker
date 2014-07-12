@@ -38,15 +38,17 @@ void HillClimbSolver::solve()
 
 void HillClimbSolver::randomSwap(const Solution* solution)
 {
-	int rand1 = rand() % solution->groupCount();
-	int rand2 = rand() % solution->groupCount();
 	const int score = solution->score();
 
-	if (rand1 == rand2)
-		return;
+	Group * group1;
+	Group * group2;
+	do  {
+		group1 = solution->getGroup(rand() % solution->groupCount());
+	} while (group1->size() == 0);
 
-	Group * group1 = solution->getGroup(rand1);
-	Group * group2 = solution->getGroup(rand2);
+	do {
+		group2 = solution->getGroup(rand() % solution->groupCount());
+	} while (group1 == group2);
 
 	const Sjaars * member = group1->randomMember();
 
