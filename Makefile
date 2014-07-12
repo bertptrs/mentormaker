@@ -8,9 +8,11 @@ VPATH=src/
 
 OBJDIR=bin
 DATADIR=data
+DEPDIR=deps
 
 DIRS=$(OBJDIR) \
-	 $(DATADIR)
+	 $(DATADIR) \
+	 $(DEPDIR)
 
 RANDOMINPUT=data/random.csv
 
@@ -22,8 +24,7 @@ _OBJS=mentormaker.o\
 	  HillClimbSolver.o
 
 OBJS=$(patsubst %, $(OBJDIR)/%, $(_OBJS))
-
-DEPFILE=Makefile.depend
+DEPS=$(patsubst %.o, $(DEPDIR)/%.depend, $(_OBJS))
 
 CPPFILES=$(wildcard src/*.cpp)
 
@@ -43,7 +44,6 @@ $(DIRS):
 clean:
 	$(RM) mentormaker
 	$(RM) generator
-	$(RM) $(DEPFILE)
 	$(RM) $(DIRS)
 
 run: all
@@ -51,7 +51,7 @@ run: all
 	eog result.ppm &
 
 $(DEPFILE): $(CPPFILES)
-	gcc $(CXXFLAGS) -MM $^ > $@ 2> /dev/null
+	gcc $(CXXFLAGS) -MM $^ -MF $@
 
 mentormaker: $(OBJS)
 	$(CXX) $(CXXFLAGS) $^ -o $@ $(LDFLAGS)
@@ -62,4 +62,7 @@ generator: generator.cpp
 $(OBJDIR)/%.o: %.cpp | $(DIRS)
 	$(CXX) $(CXXFLAGS) $< -c -o $@
 
-include $(DEPFILE)
+$(DEPDIR)/%.depend: %.cpp | $(DIRS)
+	$(CXX) -MM -MG -MT $(OBJDIR)/$(basename $(notdir $<)).o -MF $@ $<
+
+include $(DEPS)
