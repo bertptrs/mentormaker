@@ -19,7 +19,8 @@ Solver::~Solver() {
 	}
 }
 
-bool Solver::readInput(const char* input_filename) {
+bool Solver::readInput(const char* input_filename)
+{
 	ifstream input(input_filename);
 
 	if (!input.good()) {
@@ -34,7 +35,7 @@ bool Solver::readInput(const char* input_filename) {
 		assert(input.get() == ',');
 		geslacht_t geslacht = (input.get() | 32) == 'm' ? MAN : VROUW;
 		
-		for (int i = 0; i < 3 && input.get() != '\n'; i++) {
+		for (int i = 0; i < 3 && input.peek() != '\r' && input.get() != '\n'; i++) {
 			input >> voorkeuren[i];
 		}
 
