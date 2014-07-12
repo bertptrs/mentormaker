@@ -19,6 +19,7 @@ class Solver {
 		bool readInput(const char* input_filename);
 		int bestScore() const;
 		virtual void solve() = 0;
+		void save(const char*);
 };
 
 #endif

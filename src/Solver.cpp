@@ -4,6 +4,7 @@
 #include <cassert>
 #include <limits>
 #include <iostream>
+#include <algorithm>
 
 Solver::Solver() {
 }
@@ -67,4 +68,23 @@ int Solver::bestScore() const
 		bestSolution->print();
 	}
 	return best;
+}
+
+void Solver::save(const char * filename)
+{
+	// First, sort the solutions by score.
+	sort(solutions.begin(), solutions.end(),
+			[](Solution* a, Solution* b) -> bool {
+			return a->score() > b->score();
+			});
+
+	// Now save.
+	ofstream output(filename);
+	assert(output.good());
+	for (auto solution : solutions)
+	{
+		solution->write(output);
+		output << endl;
+	}
+	output.close();
 }

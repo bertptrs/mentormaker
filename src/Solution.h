@@ -2,6 +2,7 @@
 #define SOLUTION_H
 #include "Group.h"
 #include <vector>
+#include <fstream>
 
 using namespace std;
 
@@ -16,6 +17,7 @@ class Solution {
 		int groupCount() const;
 		Group* getGroup(const int index) const;
 		void print() const;
+		void write(ostream& output);
 };
 
 #endif

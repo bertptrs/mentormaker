@@ -14,7 +14,8 @@ DIRS=$(OBJDIR) \
 	 $(DATADIR) \
 	 $(DEPDIR)
 
-RANDOMINPUT=data/random.csv
+RANDOMINPUT=data/random.in.csv
+RANDOMOUTPUT=data/random.out.csv
 
 _OBJS=mentormaker.o\
 	  Sjaars.o\
@@ -33,7 +34,7 @@ CPPFILES=$(wildcard src/*.cpp)
 all: mentormaker
 
 test: all $(RANDOMINPUT)
-	./mentormaker $(RANDOMINPUT)
+	./mentormaker $(RANDOMINPUT) $(RANDOMOUTPUT)
 
 $(RANDOMINPUT): generator | $(DIRS)
 	./$< 200 $@

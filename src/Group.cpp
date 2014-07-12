@@ -50,7 +50,7 @@ int Group::score() const
 	return score;
 }
 
-inline bool Group::contains(const Sjaars * sjaars) const
+bool Group::contains(const Sjaars * sjaars) const
 {
 	return members.count(sjaars) == 1;
 }
@@ -89,4 +89,9 @@ void Group::print() const
 	cout << "Size: " << size() << ". Connections: " << friends;
 	cout << " Friendless: " << noFriends;
 	cout << ". M/V: " << ((double) rate) / (size() - rate) << endl;
+}
+
+const set<const Sjaars*>& Group::getMembers() const
+{
+	return members;
 }

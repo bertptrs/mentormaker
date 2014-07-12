@@ -20,6 +20,7 @@ class Group {
 		bool contains(const Sjaars * sjaars) const;
 		const Sjaars * randomMember() const;
 		void print() const;
+		const set<const Sjaars*>& getMembers() const;
 };
 
 #endif

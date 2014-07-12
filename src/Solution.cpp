@@ -46,3 +46,30 @@ void Solution::print() const
 		cout << endl;
 	}
 }
+
+void Solution::write(ostream& output)
+{
+	int i = 0;
+	int friendLess = 0;
+	for (auto group : groups)
+	{
+		output << "Group " << ++i;
+		for (auto member : group->getMembers())
+		{
+			int friends = 0;
+			output << "," << member->getLidNo();
+			for (auto voorkeur : member->getVoorkeuren())
+			{
+				if (group->contains(voorkeur))
+				{
+					friends++;
+				}
+			}
+			if (friends == 0)
+				friendLess++;
+		}
+		output << endl;
+	}
+	output << "Score: " << score() << endl;
+	output << "Friendless: " << friendLess << endl;
+}
