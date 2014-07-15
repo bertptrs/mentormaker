@@ -1,5 +1,6 @@
 #include "HillClimbSolver.h"
 #include <cmath>
+#include <cstdlib>
 
 const int HillClimbSolver::SOLUTION_COUNT = 10;
 const int HillClimbSolver::ITERATION_COUNT = 100000;

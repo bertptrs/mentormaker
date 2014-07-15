@@ -2,6 +2,8 @@
 #include "Solver.h"
 #include "HillClimbSolver.h"
 #include <string>
+#include <cstdlib>
+#include <ctime>
 
 using namespace std;
 
