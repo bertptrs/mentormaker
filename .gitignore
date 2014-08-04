@@ -30,3 +30,6 @@ mentormaker
 
 # Swap files
 *.swp
+
+# Distributables
+dist
