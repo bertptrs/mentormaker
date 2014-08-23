@@ -6,7 +6,8 @@
 #include <iostream>
 #include <algorithm>
 
-Solver::Solver() {
+Solver::Solver()
+: groupSize(10) {
 }
 
 Solver::~Solver() {
@@ -88,4 +89,11 @@ void Solver::save(const char * filename)
 		output << endl;
 	}
 	output.close();
+}
+
+void Solver::setGroupSize(const int newSize) {
+	groupSize = newSize;
+	for (auto solution : solutions) {
+		solution->setGroupSize(newSize);
+	}
 }

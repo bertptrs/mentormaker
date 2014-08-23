@@ -12,7 +12,8 @@ int main(int argc, char** argv) {
 	const char * outFile;
 	string input;
 	string output;
-	if (argc < 3) {
+	int groepNum;
+	if (argc < 4) {
 		cerr << "Mentormaker called without arguments." << endl;
 		cerr << "Input file? ";
 		cin >> input;
@@ -20,13 +21,17 @@ int main(int argc, char** argv) {
 		cerr << "Output file? ";
 		cin >> output;
 		outFile = output.c_str();
+		cerr << "Group size? ";
+		cin >> groepNum;
 	} else {
 		inFile = argv[1];
 		outFile = argv[2];
+		groepNum = atoi(argv[3]);
 	}
 	srand (time(NULL));
 
 	Solver* solver = new HillClimbSolver();
+	solver->setGroupSize(groepNum);
 	solver->readInput(inFile);
 	solver->solve();
 

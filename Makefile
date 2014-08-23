@@ -1,7 +1,7 @@
 CXX=g++
 CXXFLAGS=-Wall -Wextra -pedantic -O2 -std=c++11 -g
 LDFLAGS=
-DISTLDFLAGS=$(LDFLAGS) -static-libgcc -static-libstdc++
+DISTLDFLAGS=$(LDFLAGS) -static
 RM=rm -rf
 MKDIR=mkdir -p
 
@@ -37,7 +37,7 @@ CPPFILES=$(wildcard src/*.cpp)
 all: mentormaker
 
 test: all $(RANDOMINPUT)
-	./mentormaker $(RANDOMINPUT) $(RANDOMOUTPUT)
+	./mentormaker $(RANDOMINPUT) $(RANDOMOUTPUT) 12
 
 $(RANDOMINPUT): generator | $(DIRS)
 	./$< 200 $@
@@ -45,10 +45,10 @@ $(RANDOMINPUT): generator | $(DIRS)
 distributables: dist/generator dist/mentormaker
 
 dist/generator: generator.cpp | $(DIRS)
-	$(CXX) $(CXXFLAGS) $(DISTLDFLAGS) -o $@ $<
+	$(CXX) $(CXXFLAGS) -o $@ $< $(DISTLDFLAGS)
 
 dist/mentormaker: $(OBJS)
-	$(CXX) $(CXXFLAGS) $(DISTLDFLAGS) -o $@ $^
+	$(CXX) $(CXXFLAGS) -o $@ $^ $(DISTLDFLAGS)
 
 $(DIRS):
 	$(MKDIR) $@

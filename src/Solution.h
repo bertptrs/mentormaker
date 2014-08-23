@@ -9,6 +9,7 @@ using namespace std;
 class Solution {
 	private:
 		vector<Group*> groups;
+		int groupSize;
 	
 	public:
 		Solution(const int numGroups);
@@ -18,6 +19,7 @@ class Solution {
 		Group* getGroup(const int index) const;
 		void print() const;
 		void write(ostream& output);
+		void setGroupSize(const int newSize);
 };
 
 #endif

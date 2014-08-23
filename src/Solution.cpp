@@ -2,6 +2,7 @@
 #include <iostream>
 
 Solution::Solution(const int numGroups)
+	: groupSize(10)
 {
 	for (int i = 0; i < numGroups; i++) {
 		groups.push_back(new Group);
@@ -21,7 +22,7 @@ int Solution::score() const
 	int score = 0;
 
 	for (const Group * group : groups) {
-		score += group->score();
+		score += group->score(groupSize);
 	}
 
 	return score;
@@ -72,4 +73,8 @@ void Solution::write(ostream& output)
 	}
 	output << "Score: " << score() << endl;
 	output << "Friendless: " << friendLess << endl;
+}
+
+void Solution::setGroupSize(const int newSize) {
+	groupSize = newSize;
 }

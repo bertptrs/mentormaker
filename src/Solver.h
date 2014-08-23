@@ -11,6 +11,7 @@ class Solver {
 	protected:
 		map<int, Sjaars*> sjaarzen;
 		vector<Solution*> solutions;
+		int groupSize;
 
 	public:
 		Solver();
@@ -20,6 +21,7 @@ class Solver {
 		int bestScore() const;
 		virtual void solve() = 0;
 		void save(const char*);
+		void setGroupSize(const int newSize);
 };
 
 #endif

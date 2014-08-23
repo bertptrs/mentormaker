@@ -3,8 +3,6 @@
 #include <algorithm>
 #include <iostream>
 
-const int Group::IDEAL_SIZE = 10;
-
 Group::Group()
 {
 }
@@ -24,7 +22,7 @@ int Group::size() const
 	return members.size();
 }
 
-int Group::score() const
+int Group::score(const int groupSize) const
 {
 	int score = 0;
 
@@ -45,7 +43,7 @@ int Group::score() const
 	}
 
 	// punish bad group sizes.
-	score -= (int) pow(abs(size() - IDEAL_SIZE), 2);
+	score -= (int) pow(abs(size() - groupSize), 2);
 
 	return score;
 }

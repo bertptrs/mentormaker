@@ -11,7 +11,7 @@ HillClimbSolver::HillClimbSolver()
 
 void HillClimbSolver::initSolve()
 {
-	int groups = (int) round(sjaarzen.size() / (double) Group::IDEAL_SIZE);
+	int groups = (int) round(sjaarzen.size() / (double) groupSize);
 	// Allocate a few solutions
 	for (int i = 0; i < SOLUTION_COUNT; i++)
 	{
