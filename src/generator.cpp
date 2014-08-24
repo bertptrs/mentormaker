@@ -2,6 +2,7 @@
 #include <fstream>
 #include <cstdlib>
 #include <ctime>
+#include <cmath>
 
 using namespace std;
 
@@ -29,9 +30,12 @@ int main(int argc, const char **argv) {
 
 	for (int i = 0; i < lidCount; i++) {
 		out << i << ",";
-		out << ((rand() & 1) == 0 ? 'm' : 'v') << ",";
-		out << randInt(lidCount) << ","
-			<< randInt(lidCount) << "," << randInt(lidCount) << endl;
+		out << ((rand() & 1) == 0 ? 'm' : 'v');
+		int friendCount = (int) sqrt(randInt(25)) + 1;
+		for (int c = 0; c < friendCount; c++) {
+			out << "," << randInt(lidCount);
+		}
+		out << endl;
 	}
 
 	out.close();
