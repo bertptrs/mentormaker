@@ -1,14 +1,12 @@
 #include "Sjaars.h"
 #include <iostream>
 
-Sjaars::Sjaars(int lidNo, geslacht_t geslacht, int voorkeur1, int voorkeur2, int voorkeur3) :
+Sjaars::Sjaars(int lidNo, geslacht_t geslacht, const set<int>& voorkeuren) :
 	lidNo(lidNo),
 	geslacht(geslacht),
+	voorkeurIds(voorkeuren),
 	geplaatst(false)
 {
-	voorkeurIds[0] = voorkeur1;
-	voorkeurIds[1] = voorkeur2;
-	voorkeurIds[2] = voorkeur3;
 }
 
 bool Sjaars::isGeplaatst() const {

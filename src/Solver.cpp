@@ -5,6 +5,7 @@
 #include <limits>
 #include <iostream>
 #include <algorithm>
+#include <set>
 
 Solver::Solver()
 : groupSize(10) {
@@ -32,15 +33,21 @@ bool Solver::readInput(const char* input_filename)
 	int lidNo;
 
 	while ((input >> lidNo)) {
-		int voorkeuren[] = {-1, -1, -1};
+		set<int> voorkeuren;
 		assert(input.get() == ',');
 		geslacht_t geslacht = (input.get() | 32) == 'm' ? MAN : VROUW;
 		
-		for (int i = 0; i < 3 && input.peek() != '\r' && input.get() != '\n'; i++) {
-			input >> voorkeuren[i];
+		while (input.peek() != '\r' && input.get() != '\n') {
+			int voorkeur;
+			input >> voorkeur;
+			if (input.fail()) {
+				// Repeating commas or something.
+				continue;
+			}
+			voorkeuren.insert(voorkeur);
 		}
 
-		Sjaars* sjaars = new Sjaars(lidNo, geslacht, voorkeuren[0], voorkeuren[1], voorkeuren[2]);
+		Sjaars* sjaars = new Sjaars(lidNo, geslacht, voorkeuren);
 		assert(sjaarzen[lidNo] == NULL);
 		sjaarzen[lidNo] = sjaars;
 	}

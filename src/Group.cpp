@@ -70,7 +70,7 @@ void Group::print() const
 	int noFriends = 0;
 	for (auto sjaars : members)
 	{
-		cout << 0 << sjaars->getLidNo() << " ("
+		cout << sjaars->getLidNo() << " ("
 			<< (sjaars->getGeslacht() == MAN ? 'm' : 'v') << ") :";
 		bool hasFriend = false;
 		for (auto voorkeur : sjaars->getVoorkeuren())

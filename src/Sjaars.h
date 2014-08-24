@@ -14,12 +14,12 @@ class Sjaars {
 	private:
 		int lidNo;
 		geslacht_t geslacht;
-		int voorkeurIds[3];
+		set<int> voorkeurIds;
 		set<const Sjaars*> voorkeuren;
 		bool geplaatst;
 
 	public:
-		Sjaars(int lidNo, geslacht_t geslacht, int voorkeur1, int voorkeur2, int voorkeur3);
+		Sjaars(int lidNo, geslacht_t geslacht, const set<int>& voorkeuren);
 
 		bool isGeplaatst() const;
 		void setGeplaatst(bool geplaatst = true);
